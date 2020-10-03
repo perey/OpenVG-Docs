@@ -16,9 +16,9 @@ puppeteer:
 # OpenVG 1.1 Lite Specification (Provisional)
 
 Updates
-* Version 1.0 - August 1, 2005
-* Version 1.0.1 - January 26, 2007
-* Version 1.1 - December 3, 2008
+* Version 1.0 – August 1, 2005
+* Version 1.0.1 – January 26, 2007
+* Version 1.1 – December 3, 2008
 * Version 1.1 Lite (Provisional) - May 29, 2020 (Release A005)
 
 Editors
@@ -28,7 +28,7 @@ Editors
 
 <div style="page-break-after: always;"> </div>
 
-Copyright 2005-2020 The Khronos Group Inc.
+Copyright © 2005-2020 The Khronos Group Inc.
 
 This Specification is protected by copyright laws and contains material proprietary
 to Khronos. Except as described by these terms, it or any components
@@ -54,8 +54,8 @@ employees, agents or representatives be liable for any damages, whether direct,
 indirect, special or consequential damages for lost revenues, lost profits, or
 otherwise, arising from or in connection with these materials.
 
-Khronos® is a registered trademarks, and OpenVG™ is a trademark of The Khronos
-Group Inc. OpenGL® is a registered trademark and the OpenGL ES™ logos is a trademark of
+Khronos® is a registered trademark, and OpenVG™ is a trademark of The Khronos
+Group Inc. OpenGL® is a registered trademark and the OpenGL ES™ logo is a trademark of
 Hewlett Packard Enterprise used under license by Khronos. All other product names,
 trademarks, and/or company names are used solely for identification and belong to
 their respective owners.
