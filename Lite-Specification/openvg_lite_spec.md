@@ -741,7 +741,7 @@ When an OpenVG function encounters an error other than a `VG_OUT_OF_MEMORY_ERROR
 
 An error condition within an OpenVG function must never result in process termination, with the exception of illegal memory accesses taking place within functions that accept an application-provided pointer. Applications should take care to check return values where provided. Functions that do not provide return values may still flag errors that may be retrieved using the **vgGetError** function described below. Errors are stored in the context in which the function was called.
 
-All pointer arguments must be aligned according to their datatype, _e.g._, a `VGfloat` * argument must be a multiple of 4 bytes.
+All pointer arguments must be aligned according to their datatype, _e.g._, a `VGfloat *` argument must be a multiple of 4 bytes.
 
 <a name="VGErrorCode"></a>
 #### _4.1.1 VGErrorCode_
