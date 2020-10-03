@@ -303,26 +303,29 @@ their respective owners.
 <a name="chapter01"></a> <a name="Introduction"></a>
 # 1 Introduction
 
-OpenVG is an application programming interface (API) for hardware-accelerated two-dimensional vector and raster graphics developed under the auspices of Khronos Group (www.khronos.org). It provides a device- independent and vendor-neutral interface for sophisticated 2D graphical applications, while allowing device manufacturers to provide hardware acceleration where appropriate.
+OpenVG is an application programming interface (API) for hardware-accelerated two-dimensional vector and raster graphics developed under the auspices of the Khronos Group (www.khronos.org). It provides a device-independent and vendor-neutral interface for sophisticated 2D graphical applications, while allowing device manufacturers to provide hardware acceleration where appropriate.
 
 
-OpenVG Lite specification is based on OpenVG 1.1 specification. This document defines the C language binding to OpenVG Lite. We use term "OpenVG" to refer "OpenVG Lite". We use the term "OpenVG Lite" to refer to "OpenVG Lite specification", "implementation" which refers to the software and/or hardware that implements OpenVG Lite specification functionality, and the term "application" refers to any software that makes use of OpenVG Lite. We use the term "Extension" to refer to "Feature Extension of OpenVG Lite specification defined by OpenVG WG or implementation vendor".
+The OpenVG Lite specification is based on the OpenVG 1.1 specification. This document defines the C language binding to OpenVG Lite. We use the term "OpenVG" to refer to this specification, the term "implementation" to refer to the software and/or hardware that implements OpenVG Lite functionality, and the term "application" to refer to any software that makes use of OpenVG Lite. We use the term "extension" to refer to a feature extension of the OpenVG Lite specification defined by OpenVG WG or by an implementation vendor.
 
 <a name="Feature_Set"></a>
 ## _1.1 Feature set_
-OpenVG Lite provides features subset of OpenVG 1.1. Some features of OpenVG is not supported or make different rendering result on OpenVG Lite implementation.
+OpenVG Lite provides a subset of the features of OpenVG 1.1. Some features of OpenVG are not supported or may give different rendering results on an OpenVG Lite implementation.
 
 <a name="Target_applications"></a>
 ## _1.2 Target applications_
-Several classes of target applications were used to define requirement for the design of the OpenVG Lite API. For instance, SVG and Adobe Flash viewers, Portable Mapping Applications, E-book readers, Games, Scalable User Interface, Low-Level Graphics Interface.
+Several classes of target applications were used to define requirements for the design of the OpenVG Lite API. Examples include SVG and Adobe Flash viewers, portable mapping applications, e-book readers, games, scalable user interfaces, and low-level graphics interfaces.
 
 <a name="Target_Devices"></a>
 ## _1.3 Target Devices_
-OpenVG Lite profile is designed to run on devices ranging from wearable devices like a wrist watches to graphics workstation and server machines. It is expected that OpenGL ES 2.X or later version of GL graphics hardware will be able to provide inexpensive incremental acceleration for OpenVG Lite functionality. It is also expected that general purpose CPU and DSP hardware with floating point processing will be able to implementing acceleration for OpenVG Lite functionality.
+OpenVG Lite is designed to run on devices ranging from wearable devices like wrist watches to graphics workstation and server machines. It is expected that hardware supporting OpenGL ES 2.x or later versions will be able to provide inexpensive incremental acceleration for OpenVG Lite functionality. It is also expected that general-purpose CPU and DSP hardware with floating-point processing will be able to implement acceleration for OpenVG Lite functionality.
 
 <a name="Design_Philosophy"></a>
 ## _1.4 Design Philosophy_
-OpenVG Lite is intended to provide a hardware abstraction layer that will allow accelerated performance on a variety of application platforms. Functions that are not expected to be amenable to hardware acceleration in the near future were either not included, or included as part of the optional VGU utility library. Where possible, the syntax of OpenVG is intended to be reminiscent of that of OpenGL, in order to make learning OpenVG as easy as possible for OpenGL developers. Most of the OpenVG state is encapsulated in a set of primitive-valued variables that are manipulated using the vgSet and vgGet functions. Extensions may add new state
+OpenVG Lite is intended to provide a hardware abstraction layer that will allow accelerated performance on a variety of application platforms. Functions that are not expected to be amenable to hardware acceleration in the near future were either not included, or included as part of the optional VGU utility library.
+
+Where possible, the syntax of OpenVG Lite is intended to be reminiscent of that of OpenGL, in order to make learning OpenVG as easy as possible for OpenGL developers. Most of the OpenVG state is encapsulated in a set of primitive-valued variables that are manipulated using the **vgSet** and **vgGet** functions. Extensions may add new state  variables in order to add new features to the pipeline without needing to add new functions.
+
 <a name="Naming_and_Typographical_Conventions"></a>
 ##  _1.5 Naming and Typographical Conventions_
 OpenVG Lite uses a consistent set of conventions for API names and symbols. In this document, additional typographic conventions are used to help indicate the type of each symbol, as shown in Table 1 below.
@@ -335,16 +338,18 @@ OpenVG Lite uses a consistent set of conventions for API names and symbols. In t
 | API Function with Varying Parameter Types        | vgXxx{f,i,fv,iv} | Boldface        | **vgSetfv**                 |
 | Utility Function        | vguXxxYyy        | Boldface        | **vguRoundRect**            |
 | Primitive Datatype      |VGxxx             |Typewriter       | `VGfloat`                   |
-| Enumerated Datatype     |VGXxxYyy          | Typewriter      |`VGCapStyle`                 |
+| Enumerated Datatype     |VGXxxYyy          | Typewriter      | `VGCapStyle`                |
 | Enumerated Value        | VG_XXX_YYY       |Typewriter       | `VG_BLEND_MODE`             |
 | Utility Enumerated Value| VGU_XXX_YYY      | Typewriter      | `VGU_ARC_CHORD`             |
 | Function Argument       | xxxYyy           |Typewriter       | `paintMode`                 |
 
-_Table 1: Naming and Typographical Convention_
+_Table 1: Naming and Typographical Conventions_
 
 <a name="Library_Naming"></a>
 ##  _1.6 Library Naming_
-The library name is defined as `libOpenVG.z` where `z` is a platform-specific library suffix (_i.e._, `.a, .so, .lib, .dll`, etc.) ***When system has OpenVG and OpenVG Lite library together, application developer should specify order of linking***.
+The library name is defined as `libOpenVG.z` where `z` is a platform-specific library suffix (_i.e._, `.a, .so, .lib, .dll`, etc.)
+
+When a system has both OpenVG and OpenVG Lite available, application developers should specify the intended order of linking.
 
 <div style="page-break-after: always;"></div>
 
