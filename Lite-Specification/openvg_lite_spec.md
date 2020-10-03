@@ -427,9 +427,9 @@ OpenVG type definitions and function prototypes are found in an `openvg.h` heade
 ## _3.1 Versioning_
 The `openvg.h` header file defines constants indicating the version of the specification. Future versions will continue to define the constants for all previous versions with which they are backward compatible.
 
-<a name="OPENVG_VERSION_1_1L"></a>
-#### _OPENVG_VERSION_1_1L
-For the current specification, the constant `OPENVG_VERSION_1_1_L` is defined. The older version `OPENVG_VERSION_1_0, OPENVG_VERSION_1_1` continues to be defined for backwards compatibility. The version may be queried at runtime using the **vgGetString** function (see Section 15.3.2).
+<a name="OPENVG_VERSION_1_1_L"></a>
+#### _OPENVG_VERSION_1_1_L_
+For the current specification, the constant `OPENVG_VERSION_1_1_L` is defined. The older versions `OPENVG_VERSION_1_0` and `OPENVG_VERSION_1_1` continue to be defined for backwards compatibility. The version may be queried at runtime using the **vgGetString** function (see Section 15.3.2).
 
 ```C
 #define OPENVG_VERSION_1_0 1
@@ -443,17 +443,14 @@ OpenVG defines a number of primitive data types by means of C  `typedef`s. The a
 
 <a name="VGbyte"></a>
 #### _VGbyte_
-
 `VGbyte` defines an 8-bit two’s complement signed integer, which may contain values between -128 and 127, inclusive. If `khronos_types.h` is defined, `VGbyte` will be defined as `khronos_int8_t.`
 
 <a name="VGubyte"></a>
 #### _VGubyte_
-
 `VGubyte` defines an 8-bit unsigned integer, which may contain values between 0 and 255, inclusive. If `khronos_types.h` is defined, `VGubyte` will be defined as `khronos_uint8_t.`
 
 <a name="VGshort"></a>
 #### _VGshort_
-
 `VGshort` defines a 16-bit two’s complement signed integer, which may contain values between -32768 and 32767, inclusive. If `khronos_types.h` is defined, `VGshort` will be defined as `khronos_int16_t.`
 
 <a name="VGint"></a>
@@ -487,17 +484,17 @@ VG_TRUE = 1
 ## _3.3 Floating-Point and Integer Representations_
 All floating-point values are specified in standard IEEE 754 format. However, implementations may clamp extremely large or small values to a restricted range, and internal processing may be performed with lesser precision. At least 16 bits of mantissa, 6 bits of exponent, and a sign bit must be present, allowing values from  $\pm 2^{-30}$ to $\pm 2^{31}$ to be represented with a fractional precision of at least 1 in $2^{16}$.
 
-Path data (_i.e._, vertex and control point coordinates and ellipse parameters) may be pecified in one of four formats: 8-, 16-, or 32-bit signed integers, or floating-point. Floating-point scale and bias factors are used to map the incoming integer and floatingpoint values into a desired range when path processing occurs.
+Path data (_i.e._, vertex and control point coordinates and ellipse parameters) may be specified in one of four formats: 8-, 16-, or 32-bit signed integers, or floating-point. Floating-point scale and bias factors are used to map the incoming integer and floating-point values into a desired range when path processing occurs.
 
-Handling of special values is as follows. Positive and negative 0 values must be treated identically. Values of +Infinity, -Infinity, or `NaN` (not a number) yield unspecified results. Optionally, incoming floating-point values of `NaN` may be treated as 0, and values of +Infinity and -Infinity may be clamped to the largest and smallest available values within the implementation, respectively. Denormalized numbers may be truncated to 0. Passing any arbitrary value as input to any floating-point argument must not lead to OpenVG interruption or termination.
+Handling of special values is as follows. Positive and negative 0 values must be treated identically. Values of +Infinity, −Infinity, or `NaN` (not a number) yield unspecified results. Optionally, incoming floating-point values of `NaN` may be treated as 0, and values of +Infinity and −Infinity may be clamped to the largest and smallest available values within the implementation, respectively. Denormalized numbers may be truncated to 0. Passing any arbitrary value as input to any floating-point argument must not lead to OpenVG interruption or termination.
 
 <a name="VG_MAXSHORT"></a>
 #### _VG_MAXSHORT_
-The macro `VG_MAXSHORT` contains the largest positive value that may be represented by a `VGshort. VG_MAXSHORT` is defined to be equal to 2<sup>15</sup> – 1, or 32,767. The smallest negative value that may be represented by a `VGshort` is given by (– `VG_MAXSHORT` – 1), or -32,768.
+The macro `VG_MAXSHORT` contains the largest positive value that may be represented by a `VGshort`. `VG_MAXSHORT` is defined to be equal to 2<sup>15</sup> − 1, or 32,767. The smallest negative value that may be represented by a `VGshort` is given by (−`VG_MAXSHORT` − 1), or -32,768.
 
 <a name="VG_MAXINT"></a>
 #### _VG_MAXINT_
-The macro `VG_MAXINT` contains the largest positive value that may be represented by a VGint. `VG_MAXINT` is defined to be equal to 2<sup>31</sup> – 1, or 2,147,483,647. The smallest negative value that may be represented by a `VGint` is given by (`–VG_MAXINT` – 1), or -2,147,483,648.
+The macro `VG_MAXINT` contains the largest positive value that may be represented by a `VGint`. `VG_MAXINT` is defined to be equal to 2<sup>31</sup> − 1, or 2,147,483,647. The smallest negative value that may be represented by a `VGint` is given by (−`VG_MAXINT` − 1), or -2,147,483,648.
 
 <a name="VG_MAX_FLOAT"></a>
 #### _VG_MAX_FLOAT_
@@ -505,19 +502,21 @@ The parameter `VG_MAX_FLOAT` contains the largest floating-point number that wil
 
 <a name="Colors"></a>
 ## _3.4 Colors_
-Colors in OpenVG Lite other than those stored in image pixels (_e.g._, colors for clearing, painting, and edge extension for convolution) are represented as non-premultiplied (see Section 3.4.3) sRGBA [[sRGB99](#sRGB99)] color values.</r> Image pixels may be defined in a number of color spaces, including sRGB, linear RGB, linear grayscale (or _luminance_) and nonlinearly coded, perceptually-uniform grayscale, in premultiplied or non-premultiplied form. Color and alpha values lie in the range [0,1] unless otherwise noted. This applies to intermediate values in the pixel pipeline as well as to application-specified values. If an alpha channel is present but has a bit depth of zero, the alpha value of each pixel is taken to be 1.
+Colors in OpenVG Lite other than those stored in image pixels (_e.g._, colors for clearing, painting, and edge extension for convolution) are represented as non-premultiplied (see Section 3.4.3) sRGBA [[sRGB99](#sRGB99)] color values. Image pixels may be defined in a number of color spaces, including sRGB, linear RGB, linear grayscale (or _luminance_) and nonlinearly coded, perceptually-uniform grayscale, in premultiplied or non-premultiplied form. Color and alpha values lie in the range [0,1] unless otherwise noted. This applies to intermediate values in the pixel pipeline as well as to application-specified values. If an alpha channel is present but has a bit depth of zero, the alpha value of each pixel is taken to be 1.
 
-Non-linear quantities are denoted using primed (’) symbols below. [POYN03] contains an excellent discussion of the use of non-linear coding to achieve perceptual uniformity.
+Non-linear quantities are denoted using prime (′) symbols below. [POYN03] contains an excellent discussion of the use of non-linear coding to achieve perceptual uniformity.
 
 <a name="Linear_and_Non-Linear_Color_Representations"></a>
 ### _3.4.1 Linear and Non-Linear Color Representations_
-OpenVG Lite use linear RGBA color in processing. Therefore, if user want display rendering result with sRGB format, user should add conversion process for input or output color data in his application. It may be executed in OpenVG Lite or EGL. In a linear color representation, the numeric values associated with a color channelvalue measure the rate at which light is emitted by an object, multiplied by someconstant scale factor. Informally, it can be thought of as counting the number of photonsemitted in a given amount of time. Linear representations are useful for computation,since light values may be added together in a physically meaningful way.
+OpenVG Lite uses linear RGBA color in processing. If an application needs to display its rendering results in sRGB format, it will need to perform the conversion itself. This may be executed in OpenVG Lite or in EGL.
 
-However, the human visual system responds non-linearly to the light power ("intensity") of an image. Accordingly, many common image coding standards (e.g., the EXIF JPEG format used by many digital still cameras and the MPEG format used for video) utilize non-linear relationships between light power and code values. This allows a larger number of distinguishable colors to be represented in a given number of bits than is possible with a linear encoding. Common display devices such as CRTs and LCDs also emit light whose power at each pixel component is proportional to a non-linear power function (i.e., a function of the form xa where a is constant) of the applied code value, whether due to the properties of analog CRT electronics or to the deliberate application of a non-linear transfer function elsewhere in the signal path. The exponent, or gamma, of this power function is typically between 2.2 and 2.5. OpenVG makes use of the nonlinear sRGB color specification described below.
+In a linear color representation, the numeric values associated with a color channel value measure the rate at which light is emitted by an object, multiplied by some constant scale factor. Informally, it can be thought of as counting the number of photons emitted in a given amount of time. Linear representations are useful for computation,since light values may be added together in a physically meaningful way.
 
-Because linear coding of intensity fails to optimize the number of distinguishablevalues, 8-bit linear pixel formats suffer from poor contrast ratios and banding artifacts; their use with photographic imagery is not recommended. However, synthetic imagery generated by other APIs such as OpenGL ES that make use of linear light may require the use of linear formats. 8-bit linear coding is also appropriate for representing pseudoimages such as coverage masks that are not based on perceptual light intensity.
+However, the human visual system responds non-linearly to the light power ("intensity") of an image. Accordingly, many common image coding standards (e.g., the EXIF JPEG format used by many digital still cameras and the MPEG format used for video) utilize non-linear relationships between light power and code values. This allows a larger number of distinguishable colors to be represented in a given number of bits than is possible with a linear encoding. Common display devices such as CRTs and LCDs also emit light whose power at each pixel component is proportional to a non-linear power function (i.e., a function of the form $x^a$ where $a$ is constant) of the applied code value, whether due to the properties of analog CRT electronics or to the deliberate application of a non-linear transfer function elsewhere in the signal path. The exponent, or gamma, of this power function is typically between 2.2 and 2.5. OpenVG makes use of the nonlinear sRGB color specification described below.
 
-Although computing directly with non-linear representations may lead to significant errors compared with the results of first converting to a linear representation, it is common industry practice in many imaging domains to do so. Because the cost of performing linearization on pixel values to be interpolated or blended is considered prohibitive for mobile devices in the near future, OpenVG may perform these operations directly on non-linear code values. A future version of this specification may introduce flags to force values to be converted to a linear representat***
+Because linear coding of intensity fails to optimize the number of distinguishable values, 8-bit linear pixel formats suffer from poor contrast ratios and banding artifacts; their use with photographic imagery is not recommended. However, synthetic imagery generated by other APIs such as OpenGL ES that make use of linear light may require the use of linear formats. 8-bit linear coding is also appropriate for representing pseudoimages such as coverage masks that are not based on perceptual light intensity.
+
+Although computing directly with non-linear representations may lead to significant errors compared with the results of first converting to a linear representation, it is common industry practice in many imaging domains to do so. Because the cost of performing linearization on pixel values to be interpolated or blended is considered prohibitive for mobile devices in the near future, OpenVG may perform these operations directly on non-linear code values. A future version of this specification may introduce flags to force values to be converted to a linear representation prior to interpolation and blending.
 
 <a name="Color_Space_Definitions"></a>
 ### _3.4.2 Color Space Definitions_
@@ -563,7 +562,7 @@ G = \gamma^{-1}(G_{sRGB}')\tag{2} \\
 B = \gamma^{-1}(B_{sRGB}')
 $$
 
-Because the gamma function involves offset and scaling factors, it behaves similarly to a pure power function with an exponent of 1/2.2 (or approximately 0.45) rather than the "advertised" exponent of 1/2.4, (or approximately 0.42).
+Because the gamma function involves offset and scaling factors, it behaves similarly to a pure power function with an exponent of 1/2.2 (or approximately 0.45), rather than the "advertised" exponent of 1/2.4 (or approximately 0.42).
 
 The linear grayscale (luminance) color space (which we denote as lL) is related to the linear lRGB color space by the equations:
 
