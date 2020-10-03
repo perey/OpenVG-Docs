@@ -69,7 +69,7 @@ their respective owners.
 <!-- /TOC -->
 
 - [1 Introduction](#chapter01)
-	- [1.1 Features and functionalities Set](#Feature_Set_and_functionality_Set)
+	- [1.1 Feature Set](#Feature_Set)
 	- [1.2 Target Applications](#Target_Applications)
 	- [1.3 Target Devices](#Target_Devices)
 	- [1.4 Design Philosophy](#Design_Philosophy)
@@ -308,8 +308,8 @@ OpenVG is an application programming interface (API) for hardware-accelerated tw
 
 OpenVG Lite specification is based on OpenVG 1.1 specification. This document defines the C language binding to OpenVG Lite. We use term "OpenVG" to refer "OpenVG Lite". We use the term "OpenVG Lite" to refer to "OpenVG Lite specification", "implementation" which refers to the software and/or hardware that implements OpenVG Lite specification functionality, and the term "application" refers to any software that makes use of OpenVG Lite. We use the term "Extension" to refer to "Feature Extension of OpenVG Lite specification defined by OpenVG WG or implementation vendor".
 
-<a name="Feature_Set_and_functionality_Set"></a>
-## _1.1 Feature set and functionality Set_
+<a name="Feature_Set"></a>
+## _1.1 Feature set_
 OpenVG Lite provides features subset of OpenVG 1.1. Some features of OpenVG is not supported or make different rendering result on OpenVG Lite implementation.
 
 <a name="Target_applications"></a>
