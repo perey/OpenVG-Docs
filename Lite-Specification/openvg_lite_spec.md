@@ -101,7 +101,7 @@ their respective owners.
 		- [3.6.1 VGHandle](#VGHandle)
 		- [3.6.2 VG_INVALID_HANDLE](#VG_INVALID_HANDLE)
 
-- [4 The Drawing Context](#Chapter4)
+- [4 The Drawing Context](#chapter04)
 	- [4.1 Errors](#Errors)
 		- [4.1.1 VGErrorCode](#VGErrorCode)
 		- [4.1.2 vgGetError](#vgGetError)
@@ -112,7 +112,7 @@ their respective owners.
 		- [4.3.1 vgFlush](#vgFlush)
 		- [4.3.2 vgFinish](#vgFinish)
 
-- [5 Setting API Parameters](#Chapter05)
+- [5 Setting API Parameters](#chapter05)
 	- [5.1 Context Parameter Types](#Context_Parameter_Types)
 		- [5.1.1 VGParamType](#VGParamType)
 	- [5.2 Setting and Querying Context Parameter Values](#Setting_and_Querying_Context_Parameter_Values)
@@ -123,7 +123,7 @@ their respective owners.
 		- [5.3.1 vgSetParameter](#vgSetParameter)
 		- [5.3.2 vgGetParameter and vgGetParameterVectorSize](#vgGetParameter_and_vgGetParameterVectorSize)
 
-- [6 Rendering Quality and Antialiasing](#Chapter06)
+- [6 Rendering Quality and Antialiasing](#chapter06)
 	- [6.1 Rendering Quality](#Rendering_Quality)
 		- [6.1.1 VGRenderingQuality](#VGRenderingQuality)
 	- [6.2 Additional Quality Settings](#Additional_Quality_Settings)
@@ -145,7 +145,7 @@ their respective owners.
 		- [6.6.8 vgShear](#vgShear)
 		- [6.6.9 vgRotate](#vgRotate)
 
-- [7 Scissoring, Masking, and Clearing](#Chapter07)
+- [7 Scissoring, Masking, and Clearing](#chapter07)
 	- [7.1 Scissoring](#Scissoring)
 		- [7.1.1 VG_MAX_SCISSOR_RECTS](#VG_MAX_SCISSOR_RECTS)
 		- [7.1.2 Specifying Scissoring Rectangles](#Specifying_Scissoring_Rectangles)
@@ -161,7 +161,7 @@ their respective owners.
 	- [7.3 Fast Clearing](#Fast_Clearing)
 		- [7.3.1 vgClear](#vgClear)
 
-- [8.Paths](#Paths)
+- [8.Paths](#chapter08)
 	- [8.1 Moves](#Moves)
 	- [8.2 Straight Line Segments](#Straight_Line_Segments)
 	- [8.3 Bezier Curves](#Bezier_Curves)
@@ -683,7 +683,7 @@ The symbol `VG_INVALID_HANDLE` represents an invalid `VGHandle` that is used as 
 ```
 <div style="page-break-after: always;"></div>
 
-<a name="Chapter4"></a><a name="The Drawing Context"></a>
+<a name="chapter04"></a><a name="The Drawing Context"></a>
 # 4 The Drawing Context
 
 OpenVG functions that perform drawing, or that modify or query drawing state make use of an implicit _drawing context_ (or simply a _context_). A context is created, attached to a drawing surface, and bound to a running application thread outside the scope of the OpenVG API, for example by the Khronos EGL API. OpenVG API calls are executed with respect to the context currently bound to the thread in which they are executed. A call to any OpenVG API function when no drawing context is bound to the current thread has no effect. The drawing context currently bound to a running thread is referred to as the _current context_.
@@ -3000,8 +3000,8 @@ vgDrawPath(VGPath path, VG_FILL_PATH | VG_STROKE_PATH);
 ```
 
 <div style="page-break-after: always;"></div>
-<a name="chapter09"></a> <a name="Paint"></a>
 
+<a name="chapter09"></a> <a name="Paint"></a>
 # 9 Paint
 
 Paint defines a color and an alpha value for each pixel being drawn. _Color paint_ defines a constant color for all pixels; _gradient paint_ defines a linear or radial pattern of smoothly varying colors; and _pattern paint_ defines a possibly repeating rectangular pattern of colors based on a source image. It is possible to define new types of paint as extensions.
